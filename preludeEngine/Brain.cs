@@ -28,7 +28,7 @@ namespace PreludeEngine
 		public Brain(string fileName, bool fullPath)
 		{
 			currDir  = Directory.GetCurrentDirectory();
-			filePath = currDir + "\\" + fileName;
+			filePath = currDir + "/" + fileName;
 			if(fullPath)
 			{
 				readBrainFile(fileName);

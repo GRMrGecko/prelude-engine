@@ -25,7 +25,7 @@ namespace PreludeEngine
 		public string loadedMind 	= "mind.mdu";
 		public bool isContributable = false;
 		public bool isSpeaking      = false;
-		public bool proactiveMode   = true;
+		public bool proactiveMode   = false;
         public bool quantumRandomness = false;
 		private int idleTime 		= 0;
 		private string autoSpeakInput 		= "";

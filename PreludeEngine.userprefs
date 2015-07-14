@@ -1,15 +1,18 @@
-﻿<Properties StartupItem="PreludeEngineTester/PreludeEngineTester/PreludeEngineTester.csproj">
+﻿<Properties StartupItem="preludeEngine/PreludeEngine.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="preludeEngine/Brain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="preludeEngine/Mind.cs">
     <Files>
-      <File FileName="preludeEngine/Brain.cs" Line="11" Column="9" />
+      <File FileName="preludeEngine/Program.cs" Line="1" Column="1" />
+      <File FileName="preludeEngine/PreludeInterface.cs" Line="1" Column="1" />
+      <File FileName="preludeEngine/Mind.cs" Line="300" Column="29" />
+      <File FileName="preludeEngine/Brain.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="31" />
-      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="23" />
-      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="18" />
+      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="31" column="1" />
+      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="23" column="1" />
+      <Breakpoint file="/home/novalis78/projects/prelude-engine/PreludeEngineTester/PreludeEngineTester/Main.cs" line="18" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

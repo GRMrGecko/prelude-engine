@@ -146,8 +146,15 @@ namespace PreludeEngine
 		{
 			input = receivedInput;	
 			string output = "";
+			if (input.IndexOf("learn: ") != -1) {
+				string[] arguments = input.Substring(7).Split(new char[]{':'}, 2);
+				if (arguments.Length != 2 || arguments[1].Length==0 || arguments[0].Length==0) {
+					return "learn: user:bot";
+				}
+				botsMemory.Add(arguments[1], arguments[0]);
+				return "Added to brain.";
+			}
 			addNewInputToCurrentMemory(input);
-			checkInputForHiddenCommands(input);
 			output = thinkItOver(input);
             if (output == receivedInput && avoidLearnByRepeating)
             {
@@ -559,37 +566,6 @@ namespace PreludeEngine
 		}
 		*/
 		#region utility methods
-		private void checkInputForHiddenCommands(string a)
-		{
-			if((a.ToLower()).IndexOf("google") != -1)
-			{
-				string b = a.Substring(a.IndexOf("google") + 6);
-				System.Diagnostics.Process.Start("IExplore", b);
-			}
-			if((a.ToLower()).IndexOf("open") != -1)
-			{
-				if(a.ToLower().IndexOf("word") != -1)
-				{
-					System.Diagnostics.Process.Start("winword");
-				}
-				if(a.IndexOf("notepad") != -1)
-				{
-					System.Diagnostics.Process.Start("notepad");
-				}   
-			}
-			if((a.ToLower()).IndexOf("what") != -1)
-			{
-				if(a.ToLower().IndexOf("time") != -1)
-				{
-					System.Diagnostics.Process.Start("timedate.cpl");		
-				}
-			}
-			if(a.ToLower().IndexOf("network") != -1)
-			{
-				System.Diagnostics.Process.Start("ncpa.cpl");			
-			}
-		}
-		
 		public void contributeClientMind()
 		{
 			PreLudeClient pc = new PreLudeClient();

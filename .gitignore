@@ -6,3 +6,7 @@ chat.log
 .log
 .png
 .jpg
+preludeEngine/bin
+preludeEngine/obj
+PreludeEngineTester/PreludeEngineTester/bin
+PreludeEngineTester/PreludeEngineTester/obj
