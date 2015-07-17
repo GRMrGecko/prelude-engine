@@ -1,10 +1,7 @@
 ﻿<Properties StartupItem="preludeEngine/PreludeEngine.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="preludeEngine/Mind.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="preludeEngine/Brain.cs">
     <Files>
-      <File FileName="preludeEngine/Program.cs" Line="1" Column="1" />
-      <File FileName="preludeEngine/PreludeInterface.cs" Line="1" Column="1" />
-      <File FileName="preludeEngine/Mind.cs" Line="300" Column="29" />
       <File FileName="preludeEngine/Brain.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

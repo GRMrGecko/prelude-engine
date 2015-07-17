@@ -151,6 +151,9 @@ namespace PreludeEngine
 				if (arguments.Length != 2 || arguments[1].Length==0 || arguments[0].Length==0) {
 					return "learn: user:bot";
 				}
+				if (botsMemory.Contains(arguments[1])) {
+					botsMemory.Remove(arguments[1]);
+				}
 				botsMemory.Add(arguments[1], arguments[0]);
 				return "Added to brain.";
 			}

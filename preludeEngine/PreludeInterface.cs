@@ -25,14 +25,10 @@ namespace PreludeEngine
 		public string loadedMind 	= "mind.mdu";
 		public bool isContributable = false;
 		public bool isSpeaking      = false;
-		public bool proactiveMode   = false;
         public bool quantumRandomness = false;
-		private int idleTime 		= 0;
-		private string autoSpeakInput 		= "";
 		private System.Timers.Timer timer 	= null;
 		public delegate string AutoSpeakHandler(string boredString);
 		public AutoSpeakHandler reportBoredom;
-        public DateTime ChatInitiated;
         public PreludeEngine.Mind.MatchingAlgorithm initializedAssociater = Mind.MatchingAlgorithm.Basic;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 		
@@ -41,25 +37,15 @@ namespace PreludeEngine
 			mindInstance = new Mind(loadedMind, false);
 			mindInstance.analyzeShortTermMemory();
             mindInstance.associater = initializedAssociater;
-
-            ChatInitiated = DateTime.Now;
-
-			if(proactiveMode)
-			{
-				timer = new System.Timers.Timer();
-				timer.Elapsed += new System.Timers.ElapsedEventHandler(autoAnswering);
-			}
 		}
 		
 		public string chatWithPrelude(string input)
 		{
 			if(mindInstance == null) return "Error: Mind not initialized";
-			if(proactiveMode)
-			{
-				idleTime = 0;
-				if(timer != null)
-					timer.Stop();
-			}
+
+			if(timer != null)
+				timer.Stop();
+			
             if (quantumRandomness)
                 mindInstance.quantumRandomness = true;
 
@@ -70,50 +56,29 @@ namespace PreludeEngine
 			output = mindInstance.listenToInput(input);
 			if(isSpeaking)
 				speak(output);
-			if(proactiveMode)
-			{
-                SetTimer();
-				autoSpeakInput = output;
-				timer.Start();
-			}
+
+			SetTimer();
 			return output;	
 		}
 
         /// <summary>
-        /// sets the interval so as to make prelude appear to be 
-        /// trying to get the user back into a conversation...
+        /// sets the interval to auto save.
         /// </summary>
         private void SetTimer()
         {
-            DateTime n = DateTime.Now;
-            TimeSpan t = n - ChatInitiated;
-            double y = ((Convert.ToInt64(t.TotalSeconds) ^ 2) * 1000) + 5000;
-            double x = t.TotalSeconds * 1000;
-            Random random = new Random();
-            idleTime = random.Next(Convert.ToInt32(x), Convert.ToInt32(y));
-            timer.Interval = idleTime;
-            if (x > 500000)
-                ChatInitiated = DateTime.Now;
-
-            logger.Trace("Boredom time function: " + " x: " + x + " y: " + y);
+			timer = new System.Timers.Timer(300000);
+			timer.Elapsed += new System.Timers.ElapsedEventHandler(autoSaving);
+			timer.Start();
         }
 		
-		public void autoAnswering(object sender, System.Timers.ElapsedEventArgs e)
+		public void autoSaving(object sender, System.Timers.ElapsedEventArgs e)
 		{
             try
             {
-                //trigger auto answer to frontend
-                if (timer.Enabled != false)
-                {
-                    string t = mindInstance.listenToInput(autoSpeakInput);
-                    Console.WriteLine("You: (away)");
-                    Console.WriteLine("Prelude bored: " + t);
-                    SetTimer();
-                }
+				forcedSaveMindFile();
             }
             catch (System.Exception ex)
             {
-                //logger...
                 ;
             }
 		}
@@ -185,13 +150,6 @@ namespace PreludeEngine
 			PreLudeClient.port = port;
 			PreLudeClient.server = server;
 			return true;
-		}
-		
-		public bool setProactiveMode(bool a)
-		{
-            if (mindInstance == null) return false;
-			mindInstance.proactiveMode = a;
-			return false;
 		}
 
         public bool avoidLearnByRepeating { get; set; }

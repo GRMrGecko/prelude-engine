@@ -22,7 +22,6 @@ namespace PreludeEngine
 			//decide whether you want true randomness
 			pi.quantumRandomness = false;
 			pi.isSpeaking = true;
-			pi.setProactiveMode(false);
 			pi.avoidLearnByRepeating = true;
 
 			pi.initializedAssociater = Mind.MatchingAlgorithm.Dice;
